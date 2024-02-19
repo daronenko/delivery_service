@@ -1,4 +1,4 @@
-# pg_service_template
+# delivery_service
 
 Template of a C++ service that uses [userver framework](https://github.com/userver-framework/userver) with PostgreSQL.
 
@@ -9,8 +9,8 @@ To create your own userver-based service follow the following steps:
 
 1. Press the green "Use this template button" at the top of this github page
 2. Clone the service `git clone your-service-repo && cd your-service-repo`
-3. Give a propper name to your service and replace all the occurences of "pg_service_template" string with that name
-   (could be done via `find . -not -path "./third_party/*" -not -path ".git/*" -not -path './build_*' -type f | xargs sed -i 's/pg_service_template/YOUR_SERVICE_NAME/g'`).
+3. Give a propper name to your service and replace all the occurences of "delivery_service" string with that name
+   (could be done via `find . -not -path "./third_party/*" -not -path ".git/*" -not -path './build_*' -type f | xargs sed -i 's/delivery_service/YOUR_SERVICE_NAME/g'`).
 4. Feel free to tweak, adjust or fully rewrite the source code of your service.
 
 
@@ -20,8 +20,8 @@ Makefile contains typicaly useful targets for development:
 
 * `make build-debug` - debug build of the service with all the assertions and sanitizers enabled
 * `make build-release` - release build of the service with LTO
-* `make test-debug` - does a `make build-debug` and runs all the tests on the result
-* `make test-release` - does a `make build-release` and runs all the tests on the result
+* `make test-debug` - builds and runs all the tests on the result
+* `make test-release` - builds and runs all the tests on the result
 * `make service-start-debug` - builds the service in debug mode and starts it
 * `make service-start-release` - builds the service in release mode and starts it
 * `make` or `make all` - builds and runs all the tests in release and debug modes

@@ -4,5 +4,5 @@ logger-level: debug
 
 is-testing: true
 
-# pg_service_template_db_1 is the service name + _ + filename of the db_1.sql
-dbconnection: 'postgresql://testsuite@localhost:15433/pg_service_template_db_1'
+# delivery_service_db_1 is the service name + _ + filename of the db_1.sql
+dbconnection: 'postgresql://testsuite@localhost:15433/delivery_service_db_1'

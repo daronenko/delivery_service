@@ -1,3 +1,11 @@
-BasedOnStyle: google
+BasedOnStyle: Google
+Language: Cpp
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: Never
+AccessModifierOffset: -1
 DerivePointerAlignment: false
 IncludeBlocks: Preserve
+IndentWidth: 2
+MaxEmptyLinesToKeep: 2
+PointerAlignment: Left
+SortIncludes: false

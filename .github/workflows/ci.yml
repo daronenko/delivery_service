@@ -49,32 +49,43 @@ jobs:
             run: |
                 ccache -M 2.0GB
                 ccache -s
+          
+          - name: Build debug
+            if: matrix.make == 'test-debug'
+            run: make build-debug
 
-          - name: Run ${{matrix.make}}
-            run: |
-                make ${{matrix.make}}
+          - name: Build release
+            if: matrix.make == 'test-release'
+            run: make build-release
 
-          - name: Test install ${{matrix.make}}
+          - name: Test debug
+            if: matrix.make == 'test-debug'
+            run: make test-debug
+
+          - name: Test release
+            if: matrix.make == 'test-release'
+            run: make test-release
+
+          - name: Test install release
             if: matrix.make == 'test-release'
             run: |
-                make dist-clean
                 make install PREFIX=`pwd`/local_installation/
 
           - name: Test run after install
             if: matrix.make == 'test-release'
             run: >-
-                ./local_installation/bin/pg_service_template
-                --config=./local_installation/etc/pg_service_template/static_config.yaml
-                --config_vars=./local_installation/etc/pg_service_template/config_vars.yaml
+                ./local_installation/bin/delivery_service
+                --config=./local_installation/etc/delivery_service/static_config.yaml
+                --config_vars=./local_installation/etc/delivery_service/config_vars.yaml
                 &
 
           - name: Check work run service
             if: matrix.make == 'test-release'
             run: |
-                ps aux | grep pg_service_template | grep config && curl http://localhost:8080/ping -v
+                ps aux | grep delivery_service | grep config && curl http://localhost:8080/ping -v
 
           - name: Stop all
             if: matrix.make == 'test-release'
             run: |
-                killall pg_service_template
+                killall delivery_service
 
