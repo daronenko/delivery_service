@@ -15,12 +15,24 @@ add_subdirectory(third_party/userver)
 userver_setup_environment()
 
 
+# Adding cpp-jwt dependency
+set(CPP_JWT_BUILD_TESTS OFF)
+set(CPP_JWT_BUILD_EXAMPLES OFF)
+add_subdirectory(third_party/cpp-jwt)
+
+option(JWT_BUILD_EXAMPLES OFF)
+
+
 # Common sources
 add_library(${PROJECT_NAME}_objs OBJECT
     src/handlers/health/health.hpp
     src/handlers/health/health.cpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-postgresql)
+
+
+target_include_directories(${PROJECT_NAME}_objs PUBLIC cpp-jwt)
+target_link_libraries(${PROJECT_NAME}_objs PUBLIC cpp-jwt)
 
 
 # The Service
@@ -58,6 +70,8 @@ if(DEFINED ENV{PREFIX})
   file(TO_CMAKE_PATH "$ENV{PREFIX}" PREFIX_PATH)
   set(CMAKE_INSTALL_PREFIX ${PREFIX_PATH})
 endif()
+
+set(CONFIG_JWT ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_SYSCONFDIR}/${PROJECT_NAME}/jwt_config.json)
 
 file(GLOB CONFIGS_FILES ${CMAKE_CURRENT_SOURCE_DIR}/configs/*.yaml ${CMAKE_CURRENT_SOURCE_DIR}/configs/*.json)
 
