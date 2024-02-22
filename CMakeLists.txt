@@ -30,6 +30,7 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/utils/jwt.hpp
     src/utils/jwt.cpp
     src/db/sql.hpp
+    src/db/types.hpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-postgresql)
 
