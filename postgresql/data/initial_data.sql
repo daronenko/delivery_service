@@ -1,4 +1,2 @@
-INSERT INTO hello_schema.users(name, count)
-VALUES ('user-from-initial_data.sql', 42)
-ON CONFLICT (name)
-DO NOTHING;
+INSERT INTO delivery_schema.users (username, email, password_hash)
+VALUES ('test_username', 'test_email@gmail.com', 'test_password_hash');
