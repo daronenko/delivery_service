@@ -27,6 +27,8 @@ option(JWT_BUILD_EXAMPLES OFF)
 add_library(${PROJECT_NAME}_objs OBJECT
     src/handlers/health/health.hpp
     src/handlers/health/health.cpp
+    src/utils/jwt.hpp
+    src/utils/jwt.cpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-postgresql)
 
