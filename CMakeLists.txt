@@ -29,6 +29,7 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/handlers/health/health.cpp
     src/utils/jwt.hpp
     src/utils/jwt.cpp
+    src/db/sql.hpp
 )
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-postgresql)
 
