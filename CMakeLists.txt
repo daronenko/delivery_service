@@ -37,6 +37,10 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/dto/user.cpp
     src/models/user.cpp
     src/models/user.hpp
+    src/utils/errors.cpp
+    src/utils/errors.hpp
+    src/utils/make_error.cpp
+    src/utils/make_error.hpp
 )
 
 include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
