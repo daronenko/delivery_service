@@ -31,6 +31,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/utils/jwt.cpp
     src/db/sql.hpp
     src/db/types.hpp
+    src/handlers/auth/auth_bearer.hpp
+    src/handlers/auth/auth_bearer.cpp
 )
 
 include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
