@@ -32,6 +32,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/db/sql.hpp
     src/db/types.hpp
 )
+
+include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
 target_link_libraries(${PROJECT_NAME}_objs PUBLIC userver-postgresql)
 
 
