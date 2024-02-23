@@ -7,10 +7,14 @@
 #include <userver/clients/dns/component.hpp>
 #include <userver/utils/daemon_run.hpp>
 
+#include "handlers/auth/auth_bearer.hpp"
 #include "handlers/health/health.hpp"
 
 
 int main(int argc, char* argv[]) {
+  userver::server::handlers::auth::RegisterAuthCheckerFactory(
+      "bearer", std::make_unique<delivery_service::auth::CheckerFactory>());
+
   auto component_list =
       userver::components::MinimalServerComponentList()
           .Append<userver::server::handlers::Ping>()
