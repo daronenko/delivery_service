@@ -33,6 +33,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/db/types.hpp
     src/handlers/auth/auth_bearer.hpp
     src/handlers/auth/auth_bearer.cpp
+    src/dto/user.hpp
+    src/dto/user.cpp 
 )
 
 include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)
