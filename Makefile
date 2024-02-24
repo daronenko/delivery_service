@@ -87,8 +87,8 @@ lint:
 
 # Internal hidden targets that are used only in docker environment
 --in-docker-start-debug --in-docker-start-release: --in-docker-start-%: install-%
-	psql 'postgresql://user:password@delivery_service_postgres:5432/delivery_service_db_1' -f ./postgresql/schemas/db_1.sql
-	psql 'postgresql://user:password@delivery_service_postgres:5432/delivery_service_db_1' -f ./postgresql/data/initial_data.sql
+	psql 'postgresql://user:password@postgres:5432/delivery_service_db_1' -f ./postgresql/schemas/db_1.sql
+	psql 'postgresql://user:password@postgres:5432/delivery_service_db_1' -f ./postgresql/data/initial_data.sql
 	/home/user/.local/bin/delivery_service \
 		--config /home/user/.local/etc/delivery_service/static_config.yaml \
 		--config_vars /home/user/.local/etc/delivery_service/config_vars.docker.yaml
