@@ -6,8 +6,8 @@
 namespace delivery_service::db::sql {
 
 inline constexpr std::string_view kInsertUser = R"~(
-INSERT INTO delivery_schema.users(username, email, password_hash)
-VALUES($1, $2, $3)
+INSERT INTO delivery_schema.users(username, email, user_type, password_hash)
+VALUES($1, $2, $3, $4)
 RETURNING *
 )~";
 
