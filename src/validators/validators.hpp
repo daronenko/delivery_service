@@ -5,10 +5,10 @@
 
 namespace delivery_service::validator {
 
-void validate(const dto::UserLoginDTO& dto);
+void Validate(const dto::UserLoginDTO& dto);
 
-void validate(const dto::UserRegistrationDTO& dto);
+void Validate(const dto::UserRegistrationDTO& dto);
 
-void validate(const dto::UserUpdateDTO& dto);
+void Validate(const dto::UserUpdateDTO& dto);
 
 }  // namespace delivery_service::validator

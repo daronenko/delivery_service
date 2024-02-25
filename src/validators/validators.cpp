@@ -5,7 +5,7 @@
 
 namespace delivery_service::validator {
 
-void validate(const dto::UserLoginDTO& dto) {
+void Validate(const dto::UserLoginDTO& dto) {
   if (!dto.email) {
     throw utils::error::ValidationException("email", "Field is missing");
   } else if (!ValidateEmail(dto.email.value())) {
@@ -19,7 +19,7 @@ void validate(const dto::UserLoginDTO& dto) {
   }
 }
 
-void validate(const dto::UserRegistrationDTO& dto) {
+void Validate(const dto::UserRegistrationDTO& dto) {
   if (!dto.username) {
     throw utils::error::ValidationException("username", "Field is missing");
   } else if (!ValidateUsername(dto.username.value())) {
@@ -43,7 +43,7 @@ void validate(const dto::UserRegistrationDTO& dto) {
   }
 }
 
-void validate(const dto::UserUpdateDTO& dto) {
+void Validate(const dto::UserUpdateDTO& dto) {
   if (dto.username && !ValidateUsername(dto.username.value())) {
     throw utils::error::ValidationException("username", "Invalid field");
   }

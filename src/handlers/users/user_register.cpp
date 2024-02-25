@@ -33,7 +33,7 @@ userver::formats::json::Value RegisterUser::HandleRequestJsonThrow(
       request_json["user"].As<dto::UserRegistrationDTO>();
 
   try {
-    validator::validate(user_register);
+    validator::Validate(user_register);
   } catch (const utils::error::ValidationException& err) {
     request.SetResponseStatus(
         userver::server::http::HttpStatus::kUnprocessableEntity);

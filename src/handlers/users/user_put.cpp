@@ -39,7 +39,7 @@ userver::formats::json::Value PutUser::HandleRequestJsonThrow(
       request_json["user"].As<dto::UserUpdateDTO>();
 
   try {
-    validator::validate(user_change_data);
+    validator::Validate(user_change_data);
   } catch (const utils::error::ValidationException& err) {
     request.SetResponseStatus(
         userver::server::http::HttpStatus::kUnprocessableEntity);

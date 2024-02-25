@@ -35,7 +35,7 @@ userver::formats::json::Value LoginUser::HandleRequestJsonThrow(
   dto::UserLoginDTO user_login = request_json["user"].As<dto::UserLoginDTO>();
 
   try {
-    validator::validate(user_login);
+    validator::Validate(user_login);
   } catch (const utils::error::ValidationException& err) {
     request.SetResponseStatus(
         userver::server::http::HttpStatus::kUnprocessableEntity);
@@ -45,18 +45,18 @@ userver::formats::json::Value LoginUser::HandleRequestJsonThrow(
   auto password_hash =
       userver::crypto::hash::Sha256(user_login.password.value());
 
-  auto userResult = pg_cluster_->Execute(
+  auto user_result = pg_cluster_->Execute(
       userver::storages::postgres::ClusterHostType::kMaster,
       db::sql::kSelectUserByEmailAndPassword.data(), user_login.email,
       password_hash);
 
-  if (userResult.IsEmpty()) {
+  if (user_result.IsEmpty()) {
     auto& response = request.GetHttpResponse();
     response.SetStatus(userver::server::http::HttpStatus::kNotFound);
     return {};
   }
 
-  auto user = userResult.AsSingleRow<models::User>(
+  auto user = user_result.AsSingleRow<models::User>(
       userver::storages::postgres::kRowTag);
 
   userver::formats::json::ValueBuilder response;
