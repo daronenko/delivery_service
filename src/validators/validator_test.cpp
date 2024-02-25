@@ -1,12 +1,14 @@
-#include <userver/utest/utest.hpp>
-
 #include "user_validators.hpp"
 #include "utils/errors.hpp"
 #include "validators.hpp"
+#include "models/user.hpp"
+
+#include <userver/utest/utest.hpp>
 
 
 using namespace delivery_service::validator;
 using namespace delivery_service::utils::error;
+using namespace delivery_service::models;
 
 
 UTEST(UserValidation, EmailValidation) {
@@ -39,19 +41,16 @@ UTEST(UserValidation, RegisterValidation) {
   using delivery_service::dto::UserRegistrationDTO;
 
   UEXPECT_NO_THROW(
-      validate(UserRegistrationDTO{"username", "example@mail.com", "password", "regular"}));
+      validate(UserRegistrationDTO{"username", "example@mail.com", "password", UserType::kRegular}));
   UEXPECT_NO_THROW(
-      validate(UserRegistrationDTO{"username", "example@mail.com", "password", "courier"}));
+      validate(UserRegistrationDTO{"username", "example@mail.com", "password", UserType::kCourier}));
   UEXPECT_THROW(
-      validate(UserRegistrationDTO{"username", "example@mail.com", "password", "another_type"}),
+      validate(UserRegistrationDTO{std::nullopt, "example@mail.com", "password", UserType::kRegular}),
       ValidationException);
-  UEXPECT_THROW(
-      validate(UserRegistrationDTO{std::nullopt, "example@mail.com", "password", "regular"}),
-      ValidationException);
-  UEXPECT_THROW(validate(UserRegistrationDTO{"username", std::nullopt, "password", "regular"}),
+  UEXPECT_THROW(validate(UserRegistrationDTO{"username", std::nullopt, "password", UserType::kRegular}),
                 ValidationException);
   UEXPECT_THROW(
-      validate(UserRegistrationDTO{"username", "example@mail.com", std::nullopt, "regular"}),
+      validate(UserRegistrationDTO{"username", "example@mail.com", std::nullopt, UserType::kRegular}),
       ValidationException);
   UEXPECT_THROW(
       validate(UserRegistrationDTO{"username", "example@mail.com", "password", std::nullopt}),

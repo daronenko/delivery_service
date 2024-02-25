@@ -40,8 +40,6 @@ void validate(const dto::UserRegistrationDTO& dto) {
 
   if (!dto.user_type) {
     throw utils::error::ValidationException("user_type", "Field is missing");
-  } else if (!ValidateUserType(dto.user_type.value())) {
-    throw utils::error::ValidationException("user_type", "Invalid value");
   }
 }
 
@@ -56,10 +54,6 @@ void validate(const dto::UserUpdateDTO& dto) {
 
   if (dto.password && !ValidatePassword(dto.password.value())) {
     throw utils::error::ValidationException("password", "Invalid field");
-  }
-
-  if (dto.user_type && !ValidateUserType(dto.user_type.value())) {
-    throw utils::error::ValidationException("user_type", "Invalid field");
   }
 }
 

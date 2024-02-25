@@ -1,7 +1,8 @@
 #pragma once
 
+#include "models/user.hpp"
+
 #include <string>
-#include <tuple>
 
 #include <userver/formats/json.hpp>
 #include <userver/formats/parse/common_containers.hpp>
@@ -13,7 +14,7 @@ struct UserRegistrationDTO {
   std::optional<std::string> username;
   std::optional<std::string> email;
   std::optional<std::string> password;
-  std::optional<std::string> user_type;
+  std::optional<models::UserType> user_type;
 };
 
 struct UserLoginDTO {
@@ -25,7 +26,7 @@ struct UserUpdateDTO {
   std::optional<std::string> email;
   std::optional<std::string> username;
   std::optional<std::string> password;
-  std::optional<std::string> user_type;
+  std::optional<models::UserType> user_type;
 };
 
 UserRegistrationDTO Parse(const userver::formats::json::Value& json,

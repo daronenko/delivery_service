@@ -1,5 +1,8 @@
 #include "user_validators.hpp"
 
+#include <regex>
+#include <string>
+
 
 namespace delivery_service::validator {
 
@@ -14,10 +17,6 @@ bool ValidatePassword(const std::string& password) {
 
 bool ValidateUsername(const std::string& username) {
   return !username.empty();
-}
-
-bool ValidateUserType(const std::string& user_type) {
-  return (user_type == "regular" || user_type == "courier");
 }
 
 }  // namespace delivery_service::validator
