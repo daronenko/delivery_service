@@ -20,10 +20,11 @@ RegisterUser::RegisterUser(
     const userver::components::ComponentConfig& config,
     const userver::components::ComponentContext& component_context)
     : HttpHandlerJsonBase(config, component_context),
-      pg_cluster_(component_context
-                      .FindComponent<userver::components::Postgres>(
-                          "postgres-db-1")
-                      .GetCluster()) {}
+      pg_cluster_(
+          component_context
+              .FindComponent<userver::components::Postgres>("postgres-db-1")
+              .GetCluster()) {
+}
 
 userver::formats::json::Value RegisterUser::HandleRequestJsonThrow(
     const userver::server::http::HttpRequest& request,
@@ -46,8 +47,8 @@ userver::formats::json::Value RegisterUser::HandleRequestJsonThrow(
   try {
     auto query_result = pg_cluster_->Execute(
         userver::storages::postgres::ClusterHostType::kMaster,
-        db::sql::kInsertUser.data(), user_register.username, user_register.email,
-        user_register.user_type, hash_password);
+        db::sql::kInsertUser.data(), user_register.username,
+        user_register.email, user_register.user_type, hash_password);
     result_user = query_result.AsSingleRow<models::User>(
         userver::storages::postgres::kRowTag);
   } catch (const userver::storages::postgres::UniqueViolation& ex) {

@@ -30,7 +30,7 @@ userver::formats::json::Value Serialize(
     const User& user,
     userver::formats::serialize::To<userver::formats::json::Value>) {
   userver::formats::json::ValueBuilder builder;
-  
+
   builder["email"] = user.email;
   builder["username"] = user.username;
   builder["token"] = utils::jwt::GenerateJWT(user.id);
@@ -41,7 +41,6 @@ userver::formats::json::Value Serialize(
     case UserType::kCourier:
       builder["user_type"] = "courier";
       break;
-  
   }
   return builder.ExtractValue();
 }

@@ -15,10 +15,7 @@ namespace delivery_service::models {
 
 using UserId = std::string;
 
-enum class UserType {
-  kRegular,
-  kCourier
-};
+enum class UserType { kRegular, kCourier };
 
 UserType StringToUserType(const std::string& value);
 

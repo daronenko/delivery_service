@@ -20,17 +20,20 @@ class AuthCheckerBearer final
   AuthCheckerBearer(
       const userver::components::ComponentContext& component_context,
       bool is_required)
-      : pg_cluster_(component_context
-                        .FindComponent<userver::components::Postgres>(
-                            "postgres-db-1")
-                        .GetCluster()),
-        is_required_(is_required) {}
+      : pg_cluster_(
+            component_context
+                .FindComponent<userver::components::Postgres>("postgres-db-1")
+                .GetCluster()),
+        is_required_(is_required) {
+  }
 
   [[nodiscard]] AuthCheckResult CheckAuth(
       const userver::server::http::HttpRequest& request,
       userver::server::request::RequestContext& request_context) const override;
 
-  [[nodiscard]] bool SupportsUserAuth() const noexcept override { return true; }
+  [[nodiscard]] bool SupportsUserAuth() const noexcept override {
+    return true;
+  }
 
  private:
   userver::storages::postgres::ClusterPtr pg_cluster_;
@@ -63,7 +66,7 @@ AuthCheckerBearer::AuthCheckResult AuthCheckerBearer::CheckAuth(
         "'Authorization' header should have 'Bearer some-token' format",
         userver::server::handlers::HandlerErrorCode::kUnauthorized};
   }
-  
+
   std::string_view token{auth_value.data() + bearer_sep_pos + 1};
   jwt::jwt_payload payload;
   try {

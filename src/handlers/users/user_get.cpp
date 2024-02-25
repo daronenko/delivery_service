@@ -10,10 +10,11 @@ namespace delivery_service::handlers::users::get {
 GetUser::GetUser(const userver::components::ComponentConfig& config,
                  const userver::components::ComponentContext& component_context)
     : HttpHandlerJsonBase(config, component_context),
-      pg_cluster_(component_context
-                      .FindComponent<userver::components::Postgres>(
-                          "postgres-db-1")
-                      .GetCluster()) {}
+      pg_cluster_(
+          component_context
+              .FindComponent<userver::components::Postgres>("postgres-db-1")
+              .GetCluster()) {
+}
 
 userver::formats::json::Value GetUser::HandleRequestJsonThrow(
     const userver::server::http::HttpRequest& request,
@@ -31,8 +32,8 @@ userver::formats::json::Value GetUser::HandleRequestJsonThrow(
     return utils::error::MakeError("user_id", "Ivanlid user_id. Not found.");
   }
 
-  auto user = result.AsSingleRow<models::User>(
-      userver::storages::postgres::kRowTag);
+  auto user =
+      result.AsSingleRow<models::User>(userver::storages::postgres::kRowTag);
 
   userver::formats::json::ValueBuilder builder;
   builder["user"] = user;

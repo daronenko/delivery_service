@@ -17,7 +17,7 @@ UserRegistrationDTO Parse(const userver::formats::json::Value& json,
   if (user_type_str.has_value()) {
     user_type = models::StringToUserType(user_type_str.value());
   }
-  
+
   return UserRegistrationDTO{
       json["username"].As<std::optional<std::string>>(),
       json["email"].As<std::optional<std::string>>(),

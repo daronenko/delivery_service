@@ -23,10 +23,10 @@ namespace delivery_service::handlers::users::put {
 PutUser::PutUser(const userver::components::ComponentConfig& config,
                  const userver::components::ComponentContext& component_context)
     : HttpHandlerJsonBase(config, component_context),
-      pg_cluster_(component_context
-                      .FindComponent<userver::components::Postgres>(
-                          "postgres-db-1")
-                      .GetCluster()) {
+      pg_cluster_(
+          component_context
+              .FindComponent<userver::components::Postgres>("postgres-db-1")
+              .GetCluster()) {
 }
 
 userver::formats::json::Value PutUser::HandleRequestJsonThrow(
@@ -55,11 +55,10 @@ userver::formats::json::Value PutUser::HandleRequestJsonThrow(
   const auto result = pg_cluster_->Execute(
       userver::storages::postgres::ClusterHostType::kMaster,
       db::sql::kUpdateUser.data(), user_id, user_change_data.username,
-      user_change_data.email, user_change_data.user_type,
-      password_hash);
+      user_change_data.email, user_change_data.user_type, password_hash);
 
-  auto user_result_data = result.AsSingleRow<models::User>(
-      userver::storages::postgres::kRowTag);
+  auto user_result_data =
+      result.AsSingleRow<models::User>(userver::storages::postgres::kRowTag);
 
   userver::formats::json::ValueBuilder builder;
   builder["user"] = user_result_data;

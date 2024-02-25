@@ -18,12 +18,12 @@ class RegisterUser final
 
   RegisterUser(const userver::components::ComponentConfig&,
                const userver::components::ComponentContext&);
-  
+
   userver::formats::json::Value HandleRequestJsonThrow(
       const userver::server::http::HttpRequest&,
       const userver::formats::json::Value&,
       userver::server::request::RequestContext&) const override final;
-  
+
   using HttpHandlerJsonBase::HttpHandlerJsonBase;
 
  private:
