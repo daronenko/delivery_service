@@ -55,6 +55,11 @@ components_manager:
             method: GET
             task_processor: main-task-processor
 
+        handler-register-user:
+            path: /api/users
+            method: POST
+            task_processor: main-task-processor
+
         postgres-db-1:
             dbconnection: $dbconnection
             blocking_task_processor: fs-task-processor

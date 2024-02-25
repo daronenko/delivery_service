@@ -45,6 +45,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/validators/user_validators.cpp
     src/validators/validators.hpp
     src/validators/validators.cpp
+    src/handlers/users/user_register.hpp
+    src/handlers/users/user_register.cpp
 )
 
 include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)

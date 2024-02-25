@@ -7,8 +7,9 @@
 #include <userver/clients/dns/component.hpp>
 #include <userver/utils/daemon_run.hpp>
 
-#include "handlers/auth/auth_bearer.hpp"
 #include "handlers/health/health.hpp"
+#include "handlers/auth/auth_bearer.hpp"
+#include "handlers/users/user_register.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -22,7 +23,8 @@ int main(int argc, char* argv[]) {
           .Append<userver::components::HttpClient>()
           .Append<userver::server::handlers::TestsControl>()
           .Append<userver::components::Postgres>("postgres-db-1")
-          .Append<userver::clients::dns::Component>();
+          .Append<userver::clients::dns::Component>()
+          .Append<delivery_service::handlers::users::post::RegisterUser>();
 
   delivery_service::handlers::health::AppendHealth(component_list);
 
