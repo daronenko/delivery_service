@@ -60,6 +60,15 @@ components_manager:
             method: POST
             task_processor: main-task-processor
 
+        handler-user-get:
+            path: /api/user               
+            method: GET          
+            task_processor: main-task-processor 
+            auth:
+                types:
+                  - bearer
+                required: true
+
         postgres-db-1:
             dbconnection: $dbconnection
             blocking_task_processor: fs-task-processor

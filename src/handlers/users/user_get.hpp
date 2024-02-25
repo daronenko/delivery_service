@@ -1,0 +1,33 @@
+#pragma once
+
+#include <userver/server/handlers/http_handler_json_base.hpp>
+#include <userver/storages/postgres/cluster.hpp>
+#include <userver/storages/postgres/component.hpp>
+#include <userver/components/component_config.hpp>
+#include <userver/components/component_context.hpp>
+#include <userver/formats/json/value.hpp>
+
+#include <string_view>
+
+
+namespace delivery_service::handlers::users::get {
+
+class GetUser final : public userver::server::handlers::HttpHandlerJsonBase {
+ public:
+  static constexpr std::string_view kName = "handler-user-get";
+
+  GetUser(const userver::components::ComponentConfig&,
+          const userver::components::ComponentContext&);
+
+  userver::formats::json::Value HandleRequestJsonThrow(
+      const userver::server::http::HttpRequest&,
+      const userver::formats::json::Value&,
+      userver::server::request::RequestContext&) const override final;
+
+  using HttpHandlerJsonBase::HttpHandlerJsonBase;
+
+ private:
+  userver::storages::postgres::ClusterPtr pg_cluster_;
+};
+
+}  // namespace delivery_service::handlers::users::get
