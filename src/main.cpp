@@ -12,6 +12,7 @@
 #include "handlers/users/user_register.hpp"
 #include "handlers/users/user_login.hpp"
 #include "handlers/users/user_get.hpp"
+#include "handlers/users/user_put.hpp"
 
 
 int main(int argc, char* argv[]) {
@@ -28,7 +29,8 @@ int main(int argc, char* argv[]) {
           .Append<userver::clients::dns::Component>()
           .Append<delivery_service::handlers::users::post::RegisterUser>()
           .Append<delivery_service::handlers::users::post::LoginUser>()
-          .Append<delivery_service::handlers::users::get::GetUser>();
+          .Append<delivery_service::handlers::users::get::GetUser>()
+          .Append<delivery_service::handlers::users::put::PutUser>();
 
   delivery_service::handlers::health::AppendHealth(component_list);
 

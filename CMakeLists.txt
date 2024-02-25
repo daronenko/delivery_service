@@ -51,6 +51,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/handlers/users/user_login.cpp
     src/handlers/users/user_get.hpp
     src/handlers/users/user_get.cpp
+    src/handlers/users/user_put.hpp
+    src/handlers/users/user_put.cpp
 )
 
 include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src)

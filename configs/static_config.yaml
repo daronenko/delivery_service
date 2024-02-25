@@ -74,6 +74,15 @@ components_manager:
                   - bearer
                 required: true
 
+        handler-user-put:
+            path: /api/user               
+            method: PUT         
+            task_processor: main-task-processor 
+            auth:
+                types:
+                  - bearer
+                required: true
+
         postgres-db-1:
             dbconnection: $dbconnection
             blocking_task_processor: fs-task-processor
