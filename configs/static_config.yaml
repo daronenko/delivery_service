@@ -60,6 +60,11 @@ components_manager:
             method: POST
             task_processor: main-task-processor
 
+        handler-login-user:
+            path: /api/users/login
+            method: POST
+            task_processor: main-task-processor
+
         handler-user-get:
             path: /api/user               
             method: GET          

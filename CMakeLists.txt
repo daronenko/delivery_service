@@ -47,6 +47,8 @@ add_library(${PROJECT_NAME}_objs OBJECT
     src/validators/validators.cpp
     src/handlers/users/user_register.hpp
     src/handlers/users/user_register.cpp
+    src/handlers/users/user_login.hpp
+    src/handlers/users/user_login.cpp
     src/handlers/users/user_get.hpp
     src/handlers/users/user_get.cpp
 )
